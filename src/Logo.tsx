@@ -7,10 +7,10 @@ const style = {
   lineHeight: "6rem",
   borderRadius: "1rem",
   display: "flex",
-  margin: "auto",
   padding: "1rem",
   paddingBottom: "3rem",
-  fontWeight: 900
+  fontWeight: 900,
+  flexDirection: "column"
 } as React.CSSProperties;
 
 const Logo = () => {

@@ -5,7 +5,7 @@ const layoutStyle = {
   gridTemplateColumns: "minmax(max-content, 10%) auto",
   width: "100%",
   padding: "0",
-  gridGap: "2rem",
+  gridGap: "1rem",
 } as React.CSSProperties;
 
 interface Props {
@@ -19,4 +19,4 @@ const Layout = ({ children, style}: Props) => (
   </div>
 );
 
-export default Layout;
+export { Layout };

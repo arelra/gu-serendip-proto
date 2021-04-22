@@ -1,6 +1,7 @@
 import React from 'react'
 import './App.css'
-import Layout from './Layout'
+import { Content } from './ContentReactMasonry'
+import { Layout } from './Layout'
 import { Logo } from './Logo'
 
 function App() {
@@ -8,7 +9,7 @@ function App() {
     <div className="App">
       <Layout>
         <Logo />
-        <div>Content</div>
+        <Content stacking="left, top" numberOfBoxes={50} />
       </Layout>
     </div>
   )
