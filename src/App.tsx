@@ -1,17 +1,15 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './App.css'
 import { Content } from './ContentReactMasonry'
 import { Layout } from './Layout'
-import { Logo } from './Logo'
+import { Sidebar } from './Sidebar'
 import articles from "./data-02.json";
-import { ArticleViewer } from './ArticleViewer'
 
-function App() {
-
+const App = () => {
   return (
     <div className="App">
       <Layout>
-        <Logo />
+        <Sidebar />
         <Content
           articles={articles}
           stacking="left, top"

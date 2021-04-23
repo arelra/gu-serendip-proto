@@ -122,8 +122,8 @@ const Content = ({
   stacking: any;
   numberOfBoxes: number;
 }) => {
-  const [articleUrl, setArticleUrl] = useState<string>("https://4mats.netlify.app/.netlify/functions/proxy?id=tv-and-radio%2F2021%2Ffeb%2F18%2F76-days-review-real-life-hospital-drama-as-covid-hits-wuhan&platform=er");
-  const [showArticle, setShowArticle] = useState<boolean>(true);
+  const [articleUrl, setArticleUrl] = useState<string>("");
+  const [showArticle, setShowArticle] = useState<boolean>(false);
 
   const numberOfBoxesInt = parseInt(String(numberOfBoxes), 10);
   const boxes = useMemo(() => [...Array(numberOfBoxesInt)].map(getBox), [numberOfBoxesInt]);

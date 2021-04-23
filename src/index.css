@@ -23,3 +23,78 @@ a, a:visited, a:hover, a:active {
 .box:hover {
   cursor: pointer;
 }
+
+input[type='range'] {
+  overflow: hidden;
+  width: 80px;
+  -webkit-appearance: none;
+  background-color: #EEE;
+  border-radius: 4px;
+}
+
+input[type='range']::-webkit-slider-runnable-track {
+  height: 12px;
+  -webkit-appearance: none;
+  color: #13bba4;
+  margin-top: -1px;
+}
+
+input[type='range'][data-pillar='news']::-webkit-slider-thumb {
+  position: relative;
+  top: -2px;
+  width: 1rem;
+  -webkit-appearance: none;
+  height: 1rem;
+  cursor: ew-resize;
+  background: #434343;
+  box-shadow: -80px 0 0 80px #FF5943;
+  border-radius: 50%;
+}
+
+input[type='range'][data-pillar='opinion']::-webkit-slider-thumb {
+  position: relative;
+  top: -2px;
+  width: 1rem;
+  -webkit-appearance: none;
+  height: 1rem;
+  cursor: ew-resize;
+  background: #434343;
+  box-shadow: -80px 0 0 80px #ff7f0f;
+  border-radius: 50%;
+}
+
+input[type='range'][data-pillar='sport']::-webkit-slider-thumb {
+  position: relative;
+  top: -2px;
+  width: 1rem;
+  -webkit-appearance: none;
+  height: 1rem;
+  cursor: ew-resize;
+  background: #434343;
+  box-shadow: -80px 0 0 80px #00b2ff;
+  border-radius: 50%;
+}
+
+input[type='range'][data-pillar='culture']::-webkit-slider-thumb {
+  position: relative;
+  top: -2px;
+  width: 1rem;
+  -webkit-appearance: none;
+  height: 1rem;
+  cursor: ew-resize;
+  background: #434343;
+  box-shadow: -80px 0 0 80px #eacca0;
+  border-radius: 50%;
+}
+
+input[type='range'][data-pillar='lifestyle']::-webkit-slider-thumb {
+  position: relative;
+  top: -2px;
+  width: 1rem;
+  -webkit-appearance: none;
+  height: 1rem;
+  cursor: ew-resize;
+  background: #434343;
+  box-shadow: -80px 0 0 80px #ffabdb;
+  border-radius: 50%;
+}
