@@ -6,7 +6,7 @@ import { Sidebar } from './Sidebar'
 import articles from "./data-02.json";
 
 const App = () => {
-  const [showTitles, setShowTitles] = useState(false);
+  const [showTitles, setShowTitles] = useState(true);
   return (
     <div className="App">
       <Layout>

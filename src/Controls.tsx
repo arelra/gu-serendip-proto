@@ -12,7 +12,7 @@ const Controls = ({setShowTitles, showTitles}: {setShowTitles: any, showTitles: 
     return (
         <div style={controlsStyle}>
             <div>Titles</div>
-            <Switch onChange={() => {setShowTitles()}} checked={showTitles} onColor="#888" />
+            <Switch onChange={() => {setShowTitles()}} checked={showTitles} onColor="#888" className="switch-title" />
             <div>News</div>
             <input type="range" data-pillar="news" min="1" max="20" defaultValue="10" className="slider" id="myRange" />
             <div>Opinion</div>
