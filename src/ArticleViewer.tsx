@@ -1,15 +1,15 @@
 import React from "react";
 
 const style = {
-  backgroundColor: "#FBF6EF",
   position: "absolute",
-  top: "0",
+  top: "-8rem",
   left: "0",
   width: "100%",
-  height: "100vh",
+  height: "110vh",
 } as React.CSSProperties;
 
 const getProxyUrl = (url: string) => {
+  // Thank you Fares for 4mats!
   const prefix = "https://4mats.netlify.app/.netlify/functions/proxy?id=";
   const postfix = "&platform=dcr";
   let proxyPath = url.replace("https://www.theguardian.com/", "");
@@ -21,7 +21,7 @@ const getProxyUrl = (url: string) => {
 const closeStyle = {
   position: "absolute",
   right: "1rem",
-  top: "1rem",
+  top: "9rem",
   width: "2rem",
   height: "2rem",
   borderRadius: "50%",
@@ -31,7 +31,7 @@ const closeStyle = {
   alignItems: "center",
   fontSize: "1rem",
   border: "1px solid #AAA",
-  color: "white",
+  color: "black",
 } as React.CSSProperties;
 
 const CloseIcon = ({setShowArticle}: {setShowArticle: any}) => {
@@ -49,7 +49,7 @@ const CloseIcon = ({setShowArticle}: {setShowArticle: any}) => {
         xmlSpace="preserve"
       >
         <path
-          fill="white"
+          fill="#AAA"
           d="M9.016,40.837c0.195,0.195,0.451,0.292,0.707,0.292c0.256,0,0.512-0.098,0.708-0.293l14.292-14.309
 	l14.292,14.309c0.195,0.196,0.451,0.293,0.708,0.293c0.256,0,0.512-0.098,0.707-0.292c0.391-0.39,0.391-1.023,0.001-1.414
 	L26.153,25.129L40.43,10.836c0.39-0.391,0.39-1.024-0.001-1.414c-0.392-0.391-1.024-0.391-1.414,0.001L24.722,23.732L10.43,9.423
