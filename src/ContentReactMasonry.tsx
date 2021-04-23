@@ -1,7 +1,8 @@
 import React from "react";
 import { Masonry } from "react-masonry";
+import articles from "./data.json";
 
-const width = 250;
+const width = 400;
 
 const common = {
   display: "flex",
@@ -26,8 +27,11 @@ function getBox() {
   return {
     ...common,
     width: width,
-    height: random(160, 640),
+    height: random(300, 450),
     backgroundColor: randomColor(),
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center center",
   };
 }
 
@@ -46,6 +50,22 @@ function getImageSrc(height: number) {
   );
 }
 
+const Overlay = ({title, url}: {title: string, url: string}) => {
+  const style = {
+    color: "white",
+    position: "absolute",
+    bottom: 0,
+    backgroundColor: "#333",
+    opacity: "0.75",
+    padding: "1rem",
+  } as React.CSSProperties;
+  return (
+    <div style={style}>
+      <a target="_" href={url}>{title}</a>
+    </div>
+  )
+}
+
 const Content = ({
   stacking,
   numberOfBoxes = 1,
@@ -58,15 +78,17 @@ const Content = ({
 
   return (
     <Masonry style={{ height: 500 }} stacking={stacking} transition="fadeMove">
-      {boxes.slice(0, numberOfBoxesInt).map((box, index) => (
-        <div
-          className="box"
-          key={index}
-          style={{ ...box, backgroundImage: `url(${getImageSrc(box.height)})` }}
-        >
-          <div style={titleStyle}>{index}</div>
-        </div>
-      ))}
+      {boxes.slice(0, numberOfBoxesInt).map((boxStyle, index) => {
+        const article = articles[index];
+        return (
+          <div
+            className="box"
+            key={index}
+            style={{ ...boxStyle, backgroundImage: `url(${article?.images[0]?.src})` }}
+          >
+            <Overlay title={article?.title || ""} url={article?.url || ""} />
+          </div>
+      )})}
     </Masonry>
   );
 };
