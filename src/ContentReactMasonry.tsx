@@ -1,8 +1,8 @@
 import React from "react";
 import { Masonry } from "react-masonry";
-import articles from "./data.json";
 
 const width = 400;
+const height = 450;
 
 const common = {
   display: "flex",
@@ -26,8 +26,8 @@ function random250() {
 function getBox(): React.CSSProperties {
   return {
     ...common,
-    width: width,
-    height: random(300, 450),
+    width,
+    height: random(height - 150, height),
     backgroundColor: randomColor(),
     overflow: "hidden",
     transition: "all 1s",
@@ -50,7 +50,16 @@ function getImageSrc(height: number) {
   );
 }
 
-const Overlay = ({title, url}: {title: string, url: string}) => {
+const Overlay = ({title, url, pillar}: {title: string, url: string, pillar: string}) => {
+  let pillarColor = "";
+  console.log(pillar);
+  switch (pillar.toLowerCase()) {
+    case "news" :  pillarColor = "#FF5943"; break;
+    case "opinion" : pillarColor = "#ff7f0f"; break;
+    case "sport" : pillarColor = "#00b2ff"; break;
+    case "arts" : pillarColor = "#eacca0"; break;
+    case "lifestyle" : pillarColor = "#ffabdb"; break;
+  }
   const style = {
     color: "white",
     position: "absolute",
@@ -84,9 +93,11 @@ const ImageHolder = ({src}: {src: string}) => {
 }
 
 const Content = ({
+  articles,
   stacking,
   numberOfBoxes = 1,
 }: {
+  articles: any,
   stacking: any;
   numberOfBoxes: number;
 }) => {
@@ -104,7 +115,7 @@ const Content = ({
             style={{ ...boxStyle }}
           >
             <ImageHolder src={article?.images[0]?.src || ""} />
-            <Overlay title={article?.title || ""} url={article?.url || ""} />
+            <Overlay title={article?.title || ""} url={article?.url || ""} pillar={article?.pillar || ""} />
           </div>
       )})}
     </Masonry>

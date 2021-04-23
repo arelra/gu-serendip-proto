@@ -3,13 +3,18 @@ import './App.css'
 import { Content } from './ContentReactMasonry'
 import { Layout } from './Layout'
 import { Logo } from './Logo'
+import articles from "./data-02.json";
 
 function App() {
   return (
     <div className="App">
       <Layout>
         <Logo />
-        <Content stacking="left, top" numberOfBoxes={100} />
+        <Content
+          articles={articles}
+          stacking="left, top"
+          numberOfBoxes={100}
+        />
       </Layout>
     </div>
   )
