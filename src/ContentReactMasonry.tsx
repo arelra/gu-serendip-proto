@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from 'react'
 import { Masonry } from "react-masonry";
+import { ArticleViewer } from "./ArticleViewer";
 
 const width = 400;
 const height = 450;
@@ -50,15 +51,34 @@ function getImageSrc(height: number) {
   );
 }
 
-const Overlay = ({title, url, pillar}: {title: string, url: string, pillar: string}) => {
+const Overlay = ({
+  title,
+  url,
+  pillar,
+  setArticleUrl,
+}: {
+  title: string;
+  url: string;
+  pillar: string;
+  setArticleUrl: any;
+}) => {
   let pillarColor = "";
-  console.log(pillar);
   switch (pillar.toLowerCase()) {
-    case "news" :  pillarColor = "#FF5943"; break;
-    case "opinion" : pillarColor = "#ff7f0f"; break;
-    case "sport" : pillarColor = "#00b2ff"; break;
-    case "arts" : pillarColor = "#eacca0"; break;
-    case "lifestyle" : pillarColor = "#ffabdb"; break;
+    case "news":
+      pillarColor = "#FF5943";
+      break;
+    case "opinion":
+      pillarColor = "#ff7f0f";
+      break;
+    case "sport":
+      pillarColor = "#00b2ff";
+      break;
+    case "arts":
+      pillarColor = "#eacca0";
+      break;
+    case "lifestyle":
+      pillarColor = "#ffabdb";
+      break;
   }
   const style = {
     color: "white",
@@ -70,12 +90,14 @@ const Overlay = ({title, url, pillar}: {title: string, url: string, pillar: stri
   } as React.CSSProperties;
   return (
     <div style={style}>
-      <a target="_" href={url}>{title}</a>
+      <a target="_" onClick={(e) => {e.preventDefault(); setArticleUrl(url)}}>
+        {title}
+      </a>
     </div>
-  )
-}
+  );
+};
 
-const ImageHolder = ({src}: {src: string}) => {
+const ImageHolder = ({ src }: { src: string }) => {
   const style = {
     width: "100%",
     height: "100%",
@@ -87,38 +109,52 @@ const ImageHolder = ({src}: {src: string}) => {
     transition: "all 0.5s",
     position: "relative",
   } as React.CSSProperties;
-  return (
-    <div className="article-img" style={style}></div>
-  )
-}
+  return <div className="article-img" style={style}></div>;
+};
 
 const Content = ({
   articles,
   stacking,
   numberOfBoxes = 1,
 }: {
-  articles: any,
+  articles: any;
   stacking: any;
   numberOfBoxes: number;
 }) => {
+  const [articleUrl, setArticleUrl] = useState<string>("https://4mats.netlify.app/.netlify/functions/proxy?id=tv-and-radio%2F2021%2Ffeb%2F18%2F76-days-review-real-life-hospital-drama-as-covid-hits-wuhan&platform=er");
+  const [showArticle, setShowArticle] = useState<boolean>(true);
+
   const numberOfBoxesInt = parseInt(String(numberOfBoxes), 10);
   const boxes = [...Array(numberOfBoxesInt)].map(getBox);
 
   return (
-    <Masonry style={{ height: 500 }} stacking={stacking} transition="fadeMove">
-      {boxes.slice(0, numberOfBoxesInt).map((boxStyle, index) => {
-        const article = articles[index];
-        return (
-          <div
-            className="box"
-            key={index}
-            style={{ ...boxStyle }}
-          >
-            <ImageHolder src={article?.images[0]?.src || ""} />
-            <Overlay title={article?.title || ""} url={article?.url || ""} pillar={article?.pillar || ""} />
-          </div>
-      )})}
-    </Masonry>
+    <div style={{ position: "relative" }}>
+      <Masonry
+        style={{ height: 500 }}
+        stacking={stacking}
+        transition="fadeMove"
+      >
+        {boxes.slice(0, numberOfBoxesInt).map((boxStyle, index) => {
+          const article = articles[index];
+          return (
+            <div className="box" key={index} style={{ ...boxStyle }}>
+              <ImageHolder src={article?.images[0]?.src || ""} />
+              <Overlay
+                title={article?.title || ""}
+                url={article?.url || ""}
+                pillar={article?.pillar || ""}
+                setArticleUrl={(url: any) => {setArticleUrl(url); setShowArticle(true);}}
+              />
+            </div>
+          );
+        })}
+      </Masonry>
+      <ArticleViewer
+        url={articleUrl}
+        show={showArticle}
+        setShowArticle={setShowArticle}        
+      />
+    </div>
   );
 };
 
