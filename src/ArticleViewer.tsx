@@ -5,7 +5,7 @@ const style = {
   position: "absolute",
   top: "0",
   left: "0",
-  width: "90%",
+  width: "100%",
   height: "100vh",
 } as React.CSSProperties;
 
@@ -15,7 +15,6 @@ const getProxyUrl = (url: string) => {
   let proxyPath = url.replace("https://www.theguardian.com/", "");
   proxyPath = proxyPath.replaceAll("/", "%2F");
   const newUrl = `${prefix}${proxyPath}${postfix}`;
-  console.log(newUrl);
   return newUrl;
 };
 

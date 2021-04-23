@@ -56,11 +56,13 @@ const Overlay = ({
   url,
   pillar,
   setArticleUrl,
+  showTitles,
 }: {
   title: string;
   url: string;
   pillar: string;
   setArticleUrl: any;
+  showTitles: boolean;
 }) => {
   let pillarColor = "";
   switch (pillar.toLowerCase()) {
@@ -89,6 +91,7 @@ const Overlay = ({
     padding: "1rem",
     borderTop: `2px solid ${pillarColor}`
   } as React.CSSProperties;
+  if (!showTitles) return null;
   return (
     <div style={style}>
       <a target="_" onClick={(e) => {e.preventDefault(); setArticleUrl(url)}}>
@@ -117,10 +120,12 @@ const Content = ({
   articles,
   stacking,
   numberOfBoxes = 1,
+  showTitles,
 }: {
   articles: any;
   stacking: any;
   numberOfBoxes: number;
+  showTitles: boolean;
 }) => {
   const [articleUrl, setArticleUrl] = useState<string>("");
   const [showArticle, setShowArticle] = useState<boolean>(false);
@@ -145,6 +150,7 @@ const Content = ({
                 url={article?.url || ""}
                 pillar={article?.pillar || ""}
                 setArticleUrl={(url: any) => {setArticleUrl(url); setShowArticle(true);}}
+                showTitles={showTitles}
               />
             </div>
           );

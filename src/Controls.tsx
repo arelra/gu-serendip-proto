@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Switch from "react-switch";
 
 const controlsStyle = {
     display: "flex",
@@ -7,9 +8,11 @@ const controlsStyle = {
     width: "6rem",
 } as React.CSSProperties;
 
-const Controls: React.FC = () => {
+const Controls = ({setShowTitles, showTitles}: {setShowTitles: any, showTitles: any}) => {
     return (
         <div style={controlsStyle}>
+            <div>Titles</div>
+            <Switch onChange={() => {setShowTitles()}} checked={showTitles} onColor="#888" />
             <div>News</div>
             <input type="range" data-pillar="news" min="1" max="20" defaultValue="10" className="slider" id="myRange" />
             <div>Opinion</div>

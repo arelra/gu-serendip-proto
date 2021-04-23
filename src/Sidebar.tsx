@@ -18,11 +18,11 @@ const gStyle = {
   marginBottom: "2rem",
 } as React.CSSProperties;
 
-const Sidebar = () => {
+const Sidebar = ({setShowTitles, showTitles}: {setShowTitles: any, showTitles: any}) => {
   return (
     <div style={style}>
       <div style={gStyle}>g</div>
-      <Controls />
+      <Controls setShowTitles={setShowTitles} showTitles={showTitles} />
     </div>
   )
 };
