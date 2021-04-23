@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import { Masonry } from "react-masonry";
 import { ArticleViewer } from "./ArticleViewer";
 
@@ -87,6 +87,7 @@ const Overlay = ({
     backgroundColor: "#333",
     opacity: "0.75",
     padding: "1rem",
+    borderTop: `2px solid ${pillarColor}`
   } as React.CSSProperties;
   return (
     <div style={style}>
@@ -125,7 +126,7 @@ const Content = ({
   const [showArticle, setShowArticle] = useState<boolean>(true);
 
   const numberOfBoxesInt = parseInt(String(numberOfBoxes), 10);
-  const boxes = [...Array(numberOfBoxesInt)].map(getBox);
+  const boxes = useMemo(() => [...Array(numberOfBoxesInt)].map(getBox), [numberOfBoxesInt]);
 
   return (
     <div style={{ position: "relative" }}>
