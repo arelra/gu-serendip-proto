@@ -9,7 +9,7 @@ function App() {
     <div className="App">
       <Layout>
         <Logo />
-        <Content stacking="left, top" numberOfBoxes={80} />
+        <Content stacking="left, top" numberOfBoxes={100} />
       </Layout>
     </div>
   )

@@ -23,15 +23,15 @@ function random250() {
   return random(0, 255);
 }
 
-function getBox() {
+function getBox(): React.CSSProperties {
   return {
     ...common,
     width: width,
     height: random(300, 450),
     backgroundColor: randomColor(),
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center center",
+    overflow: "hidden",
+    transition: "all 1s",
+    position: "relative",
   };
 }
 
@@ -66,6 +66,23 @@ const Overlay = ({title, url}: {title: string, url: string}) => {
   )
 }
 
+const ImageHolder = ({src}: {src: string}) => {
+  const style = {
+    width: "100%",
+    height: "100%",
+    backgroundImage: `url(${src})`,
+    backgroundColor: randomColor(),
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center center",
+    transition: "all 0.5s",
+    position: "relative",
+  } as React.CSSProperties;
+  return (
+    <div className="article-img" style={style}></div>
+  )
+}
+
 const Content = ({
   stacking,
   numberOfBoxes = 1,
@@ -84,8 +101,9 @@ const Content = ({
           <div
             className="box"
             key={index}
-            style={{ ...boxStyle, backgroundImage: `url(${article?.images[0]?.src})` }}
+            style={{ ...boxStyle }}
           >
+            <ImageHolder src={article?.images[0]?.src || ""} />
             <Overlay title={article?.title || ""} url={article?.url || ""} />
           </div>
       )})}
